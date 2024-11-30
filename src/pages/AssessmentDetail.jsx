@@ -17,6 +17,7 @@ const AssessmentDetail = () => {
   const [questionDifficulty, setQuestionDifficulty] = useState('medium');
   const [showWarning, setShowWarning] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [questionHistory, setQuestionHistory] = useState({});
 
   const assessmentData = {
     1: {
@@ -91,6 +92,21 @@ const AssessmentDetail = () => {
   };
 
   const assessment = assessmentData[id];
+
+  useEffect(() => {
+    const questionId = assessment?.questions[currentQuestion]?.id;
+    if (questionId && !questionHistory[questionId]) {
+      const difficulty = assessment.questions[currentQuestion].difficulty;
+      setQuestionDifficulty(difficulty);
+      setQuestionHistory(prev => ({
+        ...prev,
+        [questionId]: difficulty
+      }));
+    } else if (questionId) {
+      setQuestionDifficulty(questionHistory[questionId]);
+    }
+  }, [currentQuestion, assessment]);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -123,19 +139,25 @@ const AssessmentDetail = () => {
   };
 
   const updateDifficulty = (isCorrect) => {
-    const difficultyLevels = ['easy', 'medium', 'hard'];
-    const currentIndex = difficultyLevels.indexOf(questionDifficulty);
-    
+    const nextQuestion = assessment?.questions[currentQuestion + 1];
+    if (!nextQuestion) return;
+
     if (isCorrect) {
       setUserSkillLevel(prev => Math.min(prev + 0.1, 1));
-      if (currentIndex < difficultyLevels.length - 1) {
-        setQuestionDifficulty(difficultyLevels[currentIndex + 1]);
-      }
+      setQuestionHistory(prev => ({
+        ...prev,
+        [nextQuestion.id]: 
+          questionDifficulty === 'easy' ? 'medium' :
+          questionDifficulty === 'medium' ? 'hard' : 'hard'
+      }));
     } else {
       setUserSkillLevel(prev => Math.max(prev - 0.1, 0));
-      if (currentIndex > 0) {
-        setQuestionDifficulty(difficultyLevels[currentIndex - 1]);
-      }
+      setQuestionHistory(prev => ({
+        ...prev,
+        [nextQuestion.id]: 
+          questionDifficulty === 'hard' ? 'medium' :
+          questionDifficulty === 'medium' ? 'easy' : 'easy'
+      }));
     }
   };
 
@@ -154,13 +176,11 @@ const AssessmentDetail = () => {
       score,
       timeSpent: assessment.duration * 60 - timeLeft,
       skillLevel: userSkillLevel,
-      completedAt: new Date().toISOString()
+      completedAt: new Date().toISOString(),
+      questionHistory: questionHistory
     };
 
-    // Here you would typically send the result to a backend
     console.log('Assessment submitted:', assessmentResult);
-    
-    // Navigate to results page
     navigate(`/assessment/${id}/results`, { state: { result: assessmentResult } });
   };
 
