@@ -28,6 +28,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import AnalyticsDashboard from '../components/AnalyticsDashboard';
+import AchievementSystem from '../components/AchievementSystem';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -182,7 +183,7 @@ const Dashboard = () => {
       <main className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="learning" className="space-y-8">
           <TabsList className="inline-flex p-1 bg-gray-100 rounded-lg w-full max-w-2xl mx-auto">
-            {['learning', 'assessment', 'analytics', 'resources'].map((tab) => (
+          {['learning', 'assessment', 'analytics', 'achievements', 'resources'].map((tab) => (
               <TabsTrigger 
                 key={tab}
                 value={tab}
@@ -361,6 +362,10 @@ const Dashboard = () => {
           <TabsContent value="analytics">
             <AnalyticsDashboard learningData={learningInsights} />
           </TabsContent>
+
+          <TabsContent value="achievements">
+            <AchievementSystem />
+          </TabsContent>         
 
           {/* Resources Tab */}
           <TabsContent value="resources">
