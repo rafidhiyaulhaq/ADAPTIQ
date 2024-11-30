@@ -27,6 +27,7 @@ import {
   Tooltip,
   ResponsiveContainer
 } from 'recharts';
+import AnalyticsDashboard from '../components/AnalyticsDashboard';
 
 const Dashboard = () => {
   const navigate = useNavigate();
