@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.889025d3.css",
-    "main.js": "/static/js/main.663c187d.js",
-    "index.html": "/index.html",
-    "main.889025d3.css.map": "/static/css/main.889025d3.css.map",
-    "main.663c187d.js.map": "/static/js/main.663c187d.js.map"
+    "main.css": "/ADAPTIQ/static/css/main.889025d3.css",
+    "main.js": "/ADAPTIQ/static/js/main.e89bf4e0.js",
+    "index.html": "/ADAPTIQ/index.html",
+    "main.889025d3.css.map": "/ADAPTIQ/static/css/main.889025d3.css.map",
+    "main.e89bf4e0.js.map": "/ADAPTIQ/static/js/main.e89bf4e0.js.map"
   },
   "entrypoints": [
     "static/css/main.889025d3.css",
-    "static/js/main.663c187d.js"
+    "static/js/main.e89bf4e0.js"
   ]
 }
