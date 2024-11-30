@@ -1,4 +1,5 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+// App.js
+import { HashRouter, Routes, Route } from 'react-router-dom';  // Tambahkan Routes dan Route
 import Dashboard from './pages/Dashboard';
 import ModuleDetail from './pages/ModuleDetail';
 import LessonDetail from './pages/LessonDetail';
@@ -7,7 +8,7 @@ import LandingPage from './pages/LandingPage';
 
 export default function App() {
   return (
-    <Router>
+    <HashRouter>  
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -17,6 +18,6 @@ export default function App() {
           <Route path="/assessment/:id" element={<AssessmentDetail />} />
         </Routes>
       </div>
-    </Router>
+    </HashRouter>
   );
 }

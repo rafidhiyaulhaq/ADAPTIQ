@@ -2,7 +2,7 @@
   "name": "adaptiq",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rafidhiyaulhaq.github.io/ADAPTIQ",
+  "homepage": ".",
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
