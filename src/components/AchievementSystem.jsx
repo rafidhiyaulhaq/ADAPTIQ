@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Trophy, Star, Target, Zap, Award, Medal, Crown } from 'lucide-react';
 import WeeklyChallenges from './WeeklyChallenges';
+import RewardAnimation from './RewardAnimation';
 
 const AchievementSystem = () => {
+  const [showReward, setShowReward] = useState(false);
+  const [currentReward, setCurrentReward] = useState(null);
+
   const achievements = {
     badges: [
       {
@@ -57,8 +61,19 @@ const AchievementSystem = () => {
     }
   };
 
+  const triggerReward = (reward) => {
+    setCurrentReward(reward);
+    setShowReward(true);
+  };
+
   return (
     <div className="space-y-6">
+      <RewardAnimation 
+        show={showReward}
+        reward={currentReward}
+        onClose={() => setShowReward(false)}
+      />
+
       {/* Level Progress */}
       <Card>
         <CardHeader>
@@ -116,8 +131,17 @@ const AchievementSystem = () => {
               <div 
                 key={badge.id}
                 className={`p-4 rounded-lg border ${
-                  badge.achieved ? 'bg-white' : 'bg-gray-50 opacity-75'
+                  badge.achieved ? 'bg-white hover:shadow-md cursor-pointer' : 'bg-gray-50 opacity-75'
                 }`}
+                onClick={() => {
+                  if (badge.achieved) {
+                    triggerReward({
+                      type: 'badge',
+                      title: badge.title,
+                      description: badge.description
+                    });
+                  }
+                }}
               >
                 <div className="flex items-start gap-4">
                   <div className={`p-2 rounded-lg bg-gray-50 ${badge.color}`}>
