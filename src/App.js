@@ -1,5 +1,4 @@
-// App.js
-import { HashRouter, Routes, Route } from 'react-router-dom';  // Tambahkan Routes dan Route
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import ModuleDetail from './pages/ModuleDetail';
 import LessonDetail from './pages/LessonDetail';
@@ -8,7 +7,7 @@ import LandingPage from './pages/LandingPage';
 
 export default function App() {
   return (
-    <HashRouter>  
+    <HashRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />

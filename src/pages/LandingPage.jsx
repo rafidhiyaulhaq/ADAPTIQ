@@ -56,7 +56,11 @@ const LandingPage = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-3xl opacity-30"></div>
               <div className="relative bg-white p-6 rounded-2xl shadow-xl">
                 <div className="aspect-video rounded-lg overflow-hidden">
-                  <img src="/images/12345.jpg" alt="AI Learning Platform"  className="w-full h-full object-cover" />
+                  <img 
+                    src={`${process.env.PUBLIC_URL}/images/12345.jpg`}
+                    alt="AI Learning Platform"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -135,6 +139,18 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer Navigation */}
+      <nav className="w-full bg-white/80 backdrop-blur-md z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Brain className="w-6 h-6 text-[#1428A0]" />
+              <span className="text-xl font-bold text-[#1428A0]">ADAPTIQ</span>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 };
