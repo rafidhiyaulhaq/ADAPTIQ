@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
-import { Brain, Target, ChartLineUp, Calendar, Clock, Zap, BookOpen, Award } from 'lucide-react';
+import { Brain, Target, LineChart as ChartIcon, Calendar, Clock, Zap, BookOpen, Award } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
 const AnalyticsDashboard = ({ learningData }) => {
@@ -39,7 +39,7 @@ const AnalyticsDashboard = ({ learningData }) => {
             title: 'Average Performance',
             value: '85.4%',
             change: '+5.2%',
-            icon: ChartLineUp,
+            icon: ChartIcon,
             color: 'blue'
           },
           {
