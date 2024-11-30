@@ -182,12 +182,12 @@ const Dashboard = () => {
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="learning" className="space-y-8">
-          <TabsList className="inline-flex p-1 bg-gray-100 rounded-lg w-full max-w-2xl mx-auto">
+          <TabsList className="flex flex-wrap sm:flex-nowrap p-1 bg-gray-100 rounded-lg w-full max-w-2xl mx-auto">
           {['learning', 'assessment', 'analytics', 'achievements', 'resources'].map((tab) => (
               <TabsTrigger 
                 key={tab}
                 value={tab}
-                className="flex-1 py-3 px-6 rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-[#1428A0] capitalize"
+                className="flex-1 min-w-[120px] py-2 sm:py-3 px-3 sm:px-6 rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-[#1428A0] capitalize"
               >
                 {tab}
               </TabsTrigger>

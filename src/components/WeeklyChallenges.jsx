@@ -48,13 +48,13 @@ const WeeklyChallenges = () => {
           Weekly Challenges
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-6">
+      <CardContent className="p-4 sm:p-6">
         <div className="space-y-6">
           {challenges.map((challenge) => (
-            <div key={challenge.id} className="p-4 rounded-lg border bg-white hover:shadow-md transition-shadow">
-              <div className="flex items-start gap-4">
+            <div key={challenge.id} className="p-3 sm:p-4 rounded-lg border bg-white hover:shadow-md transition-shadow">
+              <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-4">
                 <div className={`p-2 rounded-lg bg-gray-50 ${challenge.color}`}>
-                  <challenge.icon className="w-6 h-6" />
+                  <challenge.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-start justify-between">

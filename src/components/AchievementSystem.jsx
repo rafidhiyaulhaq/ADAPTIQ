@@ -101,7 +101,7 @@ const AchievementSystem = () => {
       </Card>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
         {[
           { icon: Trophy, label: "Total Points", value: achievements.stats.totalPoints },
           { icon: Zap, label: "Day Streak", value: achievements.stats.streak },
@@ -126,7 +126,7 @@ const AchievementSystem = () => {
           <CardTitle>Achievements</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
             {achievements.badges.map((badge) => (
               <div 
                 key={badge.id}
