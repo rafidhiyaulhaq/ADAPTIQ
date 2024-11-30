@@ -1,3 +1,4 @@
+// ModuleDetail.jsx
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
@@ -19,20 +20,20 @@ const ModuleDetail = () => {
       description: "Learn fundamental data structures and algorithms with adaptive learning path",
       sections: [
         {
-          id: 1,
+          id: "arrays",
           title: "Arrays and Lists",
           status: "completed",
           progress: 100,
           lessons: [
             {
-              id: 1,
+              id: "arrays-intro",
               title: "Introduction to Arrays",
               duration: "15 min",
               type: "video",
               status: "completed"
             },
             {
-              id: 2,
+              id: "array-ops",
               title: "Array Operations",
               duration: "25 min",
               type: "practice",
@@ -41,20 +42,20 @@ const ModuleDetail = () => {
           ]
         },
         {
-          id: 2,
+          id: "linked-lists",
           title: "Linked Lists",
           status: "in-progress",
           progress: 60,
           lessons: [
             {
-              id: 3,
+              id: "linked-list-basics",
               title: "Linked List Basics",
               duration: "20 min",
               type: "video",
               status: "completed"
             },
             {
-              id: 4,
+              id: "linked-list-impl",
               title: "Implementing Linked Lists",
               duration: "30 min",
               type: "practice",
@@ -63,20 +64,20 @@ const ModuleDetail = () => {
           ]
         },
         {
-          id: 3,
+          id: "trees",
           title: "Trees and Graphs",
           status: "locked",
           progress: 0,
           lessons: [
             {
-              id: 5,
+              id: "trees-intro",
               title: "Tree Data Structures",
               duration: "25 min",
               type: "video",
               status: "locked"
             },
             {
-              id: 6,
+              id: "tree-traversal",
               title: "Tree Traversal",
               duration: "35 min",
               type: "practice",
@@ -92,20 +93,20 @@ const ModuleDetail = () => {
       description: "Master advanced programming concepts and software design patterns",
       sections: [
         {
-          id: 1,
+          id: "oop",
           title: "Object-Oriented Programming",
           status: "in-progress",
           progress: 60,
           lessons: [
             {
-              id: 7,
+              id: "classes",
               title: "Classes and Objects",
               duration: "20 min",
               type: "video",
               status: "completed"
             },
             {
-              id: 8,
+              id: "inheritance",
               title: "Inheritance and Polymorphism",
               duration: "30 min",
               type: "practice",
@@ -114,20 +115,20 @@ const ModuleDetail = () => {
           ]
         },
         {
-          id: 2,
+          id: "patterns",
           title: "Design Patterns",
           status: "locked",
           progress: 0,
           lessons: [
             {
-              id: 9,
+              id: "creational",
               title: "Creational Patterns",
               duration: "25 min",
               type: "video",
               status: "locked"
             },
             {
-              id: 10,
+              id: "structural",
               title: "Structural Patterns",
               duration: "35 min",
               type: "practice",
@@ -136,20 +137,20 @@ const ModuleDetail = () => {
           ]
         },
         {
-          id: 3,
+          id: "architecture",
           title: "System Architecture",
           status: "locked",
           progress: 0,
           lessons: [
             {
-              id: 11,
+              id: "arch-patterns",
               title: "Architecture Patterns",
               duration: "30 min",
               type: "video",
               status: "locked"
             },
             {
-              id: 12,
+              id: "system-design",
               title: "System Design",
               duration: "40 min",
               type: "practice",
@@ -217,7 +218,7 @@ const ModuleDetail = () => {
                   <button
                     key={lesson.id}
                     disabled={lesson.status === 'locked'}
-                    onClick={() => navigate(`/lesson/${lesson.id}`)}
+                    onClick={() => navigate(`/lesson/${id}/${section.id}/${lesson.id}`)}
                     className={`w-full p-4 rounded-lg border flex items-center justify-between hover:shadow-md transition-shadow ${
                       lesson.status === 'locked' ? 'opacity-50 cursor-not-allowed' : 'hover:border-blue-500'
                     }`}

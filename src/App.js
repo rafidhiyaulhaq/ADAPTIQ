@@ -14,7 +14,7 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/module/:id" element={<ModuleDetail />} />
-          <Route path="/lesson/:id" element={<LessonDetail />} />
+          <Route path="/lesson/:moduleId/:sectionId/:lessonId" element={<LessonDetail />} />
           <Route path="/assessment/:id" element={<AssessmentDetail />} />
           <Route path="/assessment/:id/results" element={<AssessmentResult />} />
         </Routes>

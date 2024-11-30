@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Progress } from '../components/ui/progress';
 import { 
@@ -8,19 +9,55 @@ import {
 } from 'lucide-react';
 
 const LessonDetail = () => {
+  const { moduleId, sectionId, lessonId } = useParams();
+  const navigate = useNavigate();
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 
-  const lessonData = {
-    title: "Linked List Implementation",
-    type: "practice",
-    duration: "30 min",
-    steps: 5,
-    content: {
-      theory: `A linked list is a linear data structure where elements are stored in nodes, 
-               and each node points to the next node in the sequence. Unlike arrays, linked 
-               lists do not store elements in contiguous memory locations.`,
-      example: `class Node {
+  const lessonsData = {
+    "arrays-intro": {
+      title: "Introduction to Arrays",
+      type: "video",
+      duration: "15 min",
+      steps: 5,
+      content: {
+        theory: "Arrays are fundamental data structures that store elements in contiguous memory locations. They provide constant-time access to elements using indices.",
+        example: `let array = new Array(5);
+array[0] = 1;
+array[1] = 2;
+// Accessing elements
+console.log(array[0]); // Output: 1`,
+        practice: "Create an array and implement basic operations like insertion and deletion."
+      },
+      progress: 80
+    },
+    "array-ops": {
+      title: "Array Operations",
+      type: "practice",
+      duration: "25 min",
+      steps: 5,
+      content: {
+        theory: "Array operations include insertion, deletion, searching, and traversing. Each operation has its own time complexity.",
+        example: `// Array traversal
+for(let i = 0; i < array.length; i++) {
+  console.log(array[i]);
+}
+// Array insertion
+array.push(newElement);`,
+        practice: "Implement array searching and sorting algorithms."
+      },
+      progress: 60
+    },
+    "linked-list": {
+      title: "Linked List Implementation",
+      type: "practice",
+      duration: "30 min",
+      steps: 5,
+      content: {
+        theory: `A linked list is a linear data structure where elements are stored in nodes, 
+                 and each node points to the next node in the sequence. Unlike arrays, linked 
+                 lists do not store elements in contiguous memory locations.`,
+        example: `class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
@@ -32,9 +69,23 @@ class LinkedList {
     this.head = null;
   }
 }`,
-      practice: "Implement a method to insert a new node at the beginning of the linked list."
+        practice: "Implement a method to insert a new node at the beginning of the linked list."
+      },
+      progress: 40
+    }
+  };
+
+  const lessonData = lessonsData[lessonId] || {
+    title: "Lesson not found",
+    type: "error",
+    duration: "N/A",
+    steps: 0,
+    content: {
+      theory: "This lesson could not be found.",
+      example: "",
+      practice: ""
     },
-    progress: 60
+    progress: 0
   };
 
   return (
@@ -57,9 +108,9 @@ class LinkedList {
       </Card>
 
       {/* Main Content */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Left Panel - Content */}
-        <div className="col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Step {currentStep} of {lessonData.steps}</CardTitle>
@@ -86,7 +137,6 @@ class LinkedList {
                   <div className="bg-white border rounded-lg p-4">
                     <p className="text-gray-600 mb-4">{lessonData.content.practice}</p>
                     <div className="bg-gray-50 p-4 rounded-lg min-h-[200px]">
-                      {/* Code Editor Component would go here */}
                       <textarea 
                         className="w-full h-full bg-transparent outline-none resize-none"
                         placeholder="Write your code here..."
@@ -99,17 +149,23 @@ class LinkedList {
                 <div className="flex justify-between items-center mt-6">
                   <button 
                     className="px-4 py-2 flex items-center gap-2 text-gray-600 hover:text-gray-900"
-                    disabled={currentStep === 1}
+                    onClick={() => {
+                      if (currentStep === 1) {
+                        navigate(`/module/${moduleId}`);
+                      } else {
+                        setCurrentStep(prev => prev - 1);
+                      }
+                    }}
                   >
                     <ChevronLeft className="w-4 h-4" />
-                    Previous Step
+                    {currentStep === 1 ? 'Back to Module' : 'Previous Step'}
                   </button>
                   <button 
                     className="px-4 py-2 bg-[#1428A0] text-white rounded-lg flex items-center gap-2 hover:bg-[#0075C9]"
                     onClick={() => setCurrentStep(prev => Math.min(prev + 1, lessonData.steps))}
                     disabled={currentStep === lessonData.steps}
                   >
-                    Next Step
+                    {currentStep === lessonData.steps ? 'Complete' : 'Next Step'}
                     <ChevronRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -119,7 +175,7 @@ class LinkedList {
         </div>
 
         {/* Right Panel - Progress & Notes */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Progress Card */}
           <Card>
             <CardHeader>
