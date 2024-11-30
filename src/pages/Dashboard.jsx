@@ -182,25 +182,16 @@ const Dashboard = () => {
 
       <main className="max-w-7xl mx-auto px-6 py-8">
         <Tabs defaultValue="learning" className="space-y-8">
-          <TabsList className="grid grid-cols-2 sm:flex p-1 bg-gray-100 rounded-lg w-full max-w-2xl mx-auto">
-            {['learning', 'assessment', 'analytics'].map((tab) => (
-              <TabsTrigger
-                key={tab}
-                value={tab}
-                className="flex-1 py-2 sm:py-3 px-2 sm:px-6 text-sm sm:text-base rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-[#1428A0] capitalize"
-              >
-                {tab}
-              </TabsTrigger>
-            ))}
-            {['achievements', 'resources'].map((tab) => (
-              <TabsTrigger
-                key={tab}
-                value={tab}
-                className="col-span-1 flex-1 py-2 sm:py-3 px-2 sm:px-6 text-sm sm:text-base rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-[#1428A0] capitalize"
-              >
-                {tab}
-              </TabsTrigger>
-            ))}
+        <TabsList className="flex flex-wrap justify-center gap-2 p-1 bg-gray-100 rounded-lg w-full max-w-2xl mx-auto">
+          {['learning', 'assessment', 'analytics', 'achievements', 'resources'].map((tab) => (
+            <TabsTrigger 
+              key={tab}
+              value={tab}
+              className="min-w-[110px] py-2 px-3 text-sm rounded-md data-[state=active]:bg-white data-[state=active]:shadow-sm data-[state=active]:text-[#1428A0] capitalize"
+            >
+              {tab}
+            </TabsTrigger>
+          ))}
           </TabsList>
 
           <TabsContent value="learning">
