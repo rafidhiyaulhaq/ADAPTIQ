@@ -358,6 +358,7 @@ const Dashboard = () => {
           </TabsContent>
 
           <TabsContent value="analytics">
+            <AnalyticsDashboard learningData={learningInsights} />
             <div className="grid gap-8">
               {/* Overview Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
